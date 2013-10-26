@@ -1,0 +1,15 @@
+name: php
+version: 0.0.1
+inherits: wercker/ubuntu12.04-webessentials@0.0.3
+type: service
+platform: ubuntu@12.04
+description: wercker box for php
+keywords:
+  - php
+  - php5
+packages:
+  - php@5.5
+script: |
+  sudo add-apt-repository ppa:ondrej/php5 -y
+  sudo apt-get update -y
+  sudo apt-get install php5 php5-common php5-curl php5-gd php5-cli php-apcu php5-dev php5-mcrypt php5-intl libicu-dev -y
