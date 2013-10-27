@@ -21,6 +21,7 @@ script: |
 
   # Configure PHP
   sed -i 's+;date.timezone =+date.timezone = Europe/Rome +g' /etc/php5/cli/php.ini
+  sed -i  's/128M/8096M/' /etc/php5/cli/php.ini
 
   # Configure PEAR
   pear config-set php_ini /etc/php5/cli/php.ini
