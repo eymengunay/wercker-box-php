@@ -20,8 +20,8 @@ script: |
   sudo apt-get install php5 php5-common php5-dev php-pear php5-curl php5-gd php5-cli php5-apcu php5-mcrypt php5-intl libicu-dev -y
 
   # Configure PHP
-  sed -i 's+;date.timezone =+date.timezone = Europe/Rome +g' /etc/php5/cli/php.ini
-  sed -i  's/128M/8096M/' /etc/php5/cli/php.ini
+  sudo sed -i 's+;date.timezone =+date.timezone = Europe/Rome +g' /etc/php5/cli/php.ini
+  sudo sed -i  's/128M/8096M/' /etc/php5/cli/php.ini
 
   # Configure PEAR
   pear config-set php_ini /etc/php5/cli/php.ini
