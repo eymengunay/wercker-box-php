@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.2
+version: 0.0.3
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -9,6 +9,9 @@ keywords:
   - php5
 packages:
   - php@5.5
+  - npm
+  - bower
+  - libicu-dev
 script: |
   
   # Edit environment path
@@ -45,3 +48,14 @@ script: |
   chmod +x mageekguy.atoum.phar
   sudo mv mageekguy.atoum.phar /usr/local/bin/atoum
   sudo chmod +x /usr/local/bin/atoum
+
+  # Update node
+  echo '\n' | sudo add-apt-repository ppa:chris-lea/node.js
+  sudo apt-get update
+  sudo apt-get install nodejs
+
+  # Install npm
+  curl -k https://npmjs.org/install.sh | sudo sh
+
+  # Install bower
+  sudo npm install -g bower
