@@ -19,6 +19,9 @@ script: |
   sudo apt-get update -y
   sudo apt-get install php5 php5-common php5-dev php-pear php5-curl php5-gd php5-cli php5-apcu php5-mcrypt php5-intl libicu-dev -y
 
+  # Configure PHP
+  sed -i 's+;date.timezone =+date.timezone = Europe/Rome +g' /etc/php5/cli/php.ini
+
   # Configure PEAR
   pear config-set php_ini /etc/php5/cli/php.ini
   pecl config-set php_ini /etc/php5/cli/php.ini
