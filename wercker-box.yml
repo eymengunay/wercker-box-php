@@ -1,9 +1,9 @@
-name: php
+name: php55
 version: 0.0.1
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: service
 platform: ubuntu@12.04
-description: wercker box for php
+description: wercker box for php 5.5
 keywords:
   - php
   - php5
@@ -14,11 +14,17 @@ script: |
   # Edit environment path
   echo 'export PATH="/usr/local/bin:$PATH"' >> $HOME/.bash_profile
 
-  # Add repository that contains php packages
+  # Install php
   sudo add-apt-repository ppa:ondrej/php5 -y
-
   sudo apt-get update -y
-  sudo apt-get install php5 php5-common php5-curl php5-gd php5-cli php-apcu php5-dev php5-mcrypt php5-intl libicu-dev -y
+  sudo apt-get install php5 php5-common php5-dev php-pear php5-curl php5-gd php5-cli php5-apcu php5-mcrypt php5-intl libicu-dev -y
+
+  # Configure PEAR
+  pear config-set php_ini /etc/php5/cli/php.ini
+  pecl config-set php_ini /etc/php5/cli/php.ini
+
+  # Install PHP extensions
+  echo '\n' | sudo pecl install mongo
 
   # Install composer
   curl -sS https://getcomposer.org/installer | php
