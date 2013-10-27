@@ -10,6 +10,28 @@ keywords:
 packages:
   - php@5.5
 script: |
+  
+  # Edit environment path
+  echo 'export PATH="/usr/local/bin:$PATH"' >> $HOME/.bash_profile
+
+  # Add repository that contains php packages
   sudo add-apt-repository ppa:ondrej/php5 -y
+
   sudo apt-get update -y
   sudo apt-get install php5 php5-common php5-curl php5-gd php5-cli php-apcu php5-dev php5-mcrypt php5-intl libicu-dev -y
+
+  # Install composer
+  curl -sS https://getcomposer.org/installer | php
+  sudo mv composer.phar /usr/local/bin/composer
+  sudo chmod +x /usr/local/bin/composer
+
+  # Install PHPUnit
+  wget https://phar.phpunit.de/phpunit.phar
+  sudo mv phpunit.phar /usr/local/bin/phpunit
+  sudo chmod +x /usr/local/bin/phpunit
+
+  # Install atoum
+  wget http://downloads.atoum.org/nightly/mageekguy.atoum.phar
+  chmod +x mageekguy.atoum.phar
+  sudo mv mageekguy.atoum.phar /usr/local/bin/atoum
+  sudo chmod +x /usr/local/bin/atoum
