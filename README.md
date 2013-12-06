@@ -9,6 +9,7 @@ PHP 5.5 wercker box.
 * composer
 * PHPUnit
 * atoum
+* capifony
 
 ## PHP info output
 

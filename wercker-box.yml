@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.6
+version: 0.0.7
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -12,6 +12,7 @@ packages:
   - npm
   - bower
   - libicu-dev
+  - capifony
 script: |
   
   # Edit environment path
@@ -59,3 +60,6 @@ script: |
 
   # Install bower
   sudo npm install -g bower
+
+  # Install capifony
+  sudo gem install capifony
