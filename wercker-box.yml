@@ -21,7 +21,7 @@ script: |
   # Install php
   sudo add-apt-repository ppa:ondrej/php5 -y
   sudo apt-get update -y
-  sudo apt-get install php5 php5-common php5-dev php-pear php5-curl php5-gd php5-cli php5-apcu php5-mcrypt php5-intl php5-xdebug libicu-dev php5-redis php5-xhprof -y
+  sudo apt-get install php5 php5-common php5-dev php-pear php5-curl php5-gd php5-cli php5-apcu php5-mcrypt php5-intl php5-xdebug libicu-dev php5-redis -y
 
   # Configure PHP
   sudo sed -i 's+;date.timezone =+date.timezone = Europe/Rome +g' /etc/php5/cli/php.ini
