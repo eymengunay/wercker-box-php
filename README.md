@@ -10,6 +10,8 @@ PHP 5.5 wercker box.
 * PHPUnit
 * atoum
 * capifony
+* s3cmd
+* coverage-badge
 
 ## PHP info output
 
