@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.9
+version: 0.0.10
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -67,4 +67,4 @@ script: |
   sudo apt-get update && sudo apt-get install s3cmd
 
   # Install coverage-badge
-  sudo npm install coverage-badge
+  sudo npm install -g coverage-badge
