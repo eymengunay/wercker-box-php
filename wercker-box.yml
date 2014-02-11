@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.8
+version: 0.0.9
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -63,3 +63,11 @@ script: |
 
   # Install capifony
   sudo gem install capifony
+
+  # Install s3cmd
+  wget -O- -q http://s3tools.org/repo/deb-all/stable/s3tools.key | sudo apt-key add -
+  sudo wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list
+  sudo apt-get update && sudo apt-get install s3cmd
+
+  # Install coverage-badge
+  npm install coverage-badge
