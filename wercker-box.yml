@@ -55,9 +55,6 @@ script: |
   sudo apt-get update
   sudo apt-get install nodejs
 
-  # Install npm
-  curl -k https://npmjs.org/install.sh | sudo sh
-
   # Install bower
   sudo npm install -g bower
 
