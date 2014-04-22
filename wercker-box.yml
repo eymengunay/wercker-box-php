@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.10
+version: 0.0.11
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -38,6 +38,8 @@ script: |
   curl -sS https://getcomposer.org/installer | php
   sudo mv composer.phar /usr/local/bin/composer
   sudo chmod +x /usr/local/bin/composer
+  mkdir $WERCKER_CACHE_DIR/composer || echo "Composer cache directory exists"
+  composer config --global cache-dir $WERCKER_CACHE_DIR/composer
 
   # Install PHPUnit
   wget https://phar.phpunit.de/phpunit.phar
