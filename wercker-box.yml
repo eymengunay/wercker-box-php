@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.13
+version: 0.0.14
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -32,7 +32,7 @@ script: |
   pecl config-set php_ini /etc/php5/cli/php.ini
 
   # Install PHP extensions
-  echo '\n' | sudo pecl install mongo
+  echo '\n' | sudo pecl install -f mongo-1.4.5
 
   # Install composer
   curl -sS https://getcomposer.org/installer | php
