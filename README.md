@@ -16,10 +16,10 @@ PHP 5.5 wercker box.
 ## PHP info output
 
 ```
-PHP Version => 5.5.5-1+debphp.org~precise+1
+PHP Version => 5.5.11-3+deb.sury.org~precise+1
 
-System => Linux wercker 3.2.0-38-virtual #61-Ubuntu SMP Tue Feb 19 12:37:47 UTC 2013 x86_64
-Build Date => Oct 21 2013 07:54:14
+System => Linux wercker 3.2.0-60-virtual #91-Ubuntu SMP Wed Feb 19 04:13:28 UTC 2014 x86_64
+Build Date => Apr 23 2014 12:19:48
 Server API => Command Line Interface
 Virtual Directory Support => disabled
 Configuration File (php.ini) Path => /etc/php5/cli
@@ -33,7 +33,9 @@ Additional .ini files parsed => /etc/php5/cli/conf.d/05-opcache.ini,
 /etc/php5/cli/conf.d/20-intl.ini,
 /etc/php5/cli/conf.d/20-json.ini,
 /etc/php5/cli/conf.d/20-mcrypt.ini,
-/etc/php5/cli/conf.d/20-readline.ini
+/etc/php5/cli/conf.d/20-readline.ini,
+/etc/php5/cli/conf.d/20-redis.ini,
+/etc/php5/cli/conf.d/20-xdebug.ini
 
 PHP API => 20121113
 PHP Extension => 20121212
@@ -46,15 +48,16 @@ Zend Signal Handling => disabled
 Zend Memory Manager => enabled
 Zend Multibyte Support => provided by mbstring
 IPv6 Support => enabled
-DTrace Support => disabled
+DTrace Support => enabled
 
 Registered PHP Streams => https, ftps, compress.zlib, compress.bzip2, php, file, glob, data, http, ftp, phar, zip
 Registered Stream Socket Transports => tcp, udp, unix, udg, ssl, sslv3, tls
 Registered Stream Filters => zlib.*, bzip2.*, convert.iconv.*, string.rot13, string.toupper, string.tolower, string.strip_tags, convert.*, consumed, dechunk, mcrypt.*, mdecrypt.*
 
 This program makes use of the Zend Scripting Language Engine:
-Zend Engine v2.5.0, Copyright (c) 1998-2013 Zend Technologies
-    with Zend OPcache v7.0.3-dev, Copyright (c) 1999-2013, by Zend Technologies
+Zend Engine v2.5.0, Copyright (c) 1998-2014 Zend Technologies
+    with Zend OPcache v7.0.4-dev, Copyright (c) 1999-2014, by Zend Technologies
+    with Xdebug v2.2.3, Copyright (c) 2002-2013, by Derick Rethans
 
 
  _______________________________________________________________________
@@ -119,7 +122,7 @@ Calendar support => enabled
 
 Core
 
-PHP Version => 5.5.5-1+debphp.org~precise+1
+PHP Version => 5.5.11-3+deb.sury.org~precise+1
 
 Directive => Local Value => Master Value
 allow_url_fopen => On => On
@@ -135,7 +138,7 @@ browscap => no value => no value
 default_charset => no value => no value
 default_mimetype => text/html => text/html
 disable_classes => no value => no value
-disable_functions => pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority, => pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,
+disable_functions => no value => no value
 display_errors => Off => Off
 display_startup_errors => Off => Off
 doc_root => no value => no value
@@ -172,7 +175,7 @@ max_file_uploads => 20 => 20
 max_input_nesting_level => 64 => 64
 max_input_time => -1 => -1
 max_input_vars => 1000 => 1000
-memory_limit => 8096M => 8096M
+memory_limit => -1 => -1
 open_basedir => no value => no value
 output_buffering => 0 => 0
 output_handler => no value => no value
@@ -292,12 +295,12 @@ exif.encode_unicode => ISO-8859-15 => ISO-8859-15
 fileinfo
 
 fileinfo support => enabled
-version => 1.0.5-dev
+version => 1.0.5
 
 filter
 
 Input Validation and Filtering => enabled
-Revision => $Id: 12aebcf366f801ceeae618aefd4383fef24e701b $
+Revision => $Id: 4d3899e089e6e45b157975ceef2ac7deb6e9d762 $
 
 Directive => Local Value => Master Value
 filter.default => unsafe_raw => unsafe_raw
@@ -353,8 +356,8 @@ intl
 
 Internationalization support => enabled
 version => 1.1.0
-ICU version => 4.8.1.1
-ICU Data version => 4.8.1
+ICU version => 52.1
+ICU Data version => 52.1
 
 Directive => Local Value => Master Value
 intl.default_locale => no value => no value
@@ -364,8 +367,9 @@ intl.use_exceptions => 0 => 0
 json
 
 json support => enabled
-json version => 1.3.2
-JSON-C version (bundled) => 0.11
+json version => 1.3.4
+JSON-C headers version => 0.11.99
+JSON-C library version => 0.11.99
 
 libxml
 
@@ -419,7 +423,7 @@ MHASH API Version => Emulated Support
 mongo
 
 MongoDB Support => enabled
-Version => 1.4.4
+Version => 1.4.5
 SSL Support => enabled
 Streams Support => enabled
 
@@ -461,9 +465,9 @@ PDO drivers =>
 Phar
 
 Phar: PHP Archive support => enabled
-Phar EXT version => 2.0.1
+Phar EXT version => 2.0.2
 Phar API version => 1.1.1
-SVN revision => $Id: ec8e5fbde7521bb0b03975e5c086f4e10830b36f $
+SVN revision => $Id: a5488937a80433d434af6753d3db8517feaf91df $
 Phar-based phar archives => enabled
 Tar-based phar archives => enabled
 ZIP-based phar archives => enabled
@@ -482,7 +486,7 @@ phar.require_hash => On => On
 
 posix
 
-Revision => $Id: 32db6705f5b617967a546be3114e178a4138c1ca $
+Revision => $Id: 1dfa9997ed76804e53c91e0ce862f3707617b6ed $
 
 readline
 
@@ -493,15 +497,20 @@ Directive => Local Value => Master Value
 cli.pager => no value => no value
 cli.prompt => \b \>  => \b \> 
 
+redis
+
+Redis Support => enabled
+Redis Version => 2.2.4
+
 Reflection
 
 Reflection => enabled
-Version => $Id: b1f7484f243ca1baeb64560b43b1927e7279dc80 $
+Version => $Id: 31d836a7ac92a37b5c580836d91ad4736fe2f376 $
 
 session
 
 Session Support => enabled
-Registered save handlers => files user 
+Registered save handlers => files user redis 
 Registered serializer handlers => php_serialize php php_binary wddx 
 
 Directive => Local Value => Master Value
@@ -543,7 +552,7 @@ shmop support => enabled
 SimpleXML
 
 Simplexml support => enabled
-Revision => $Id: eba46b909103648e33046d39de5d9de73bc28162 $
+Revision => $Id: 363ea1fc44b0b7775e2ec3ce8456530fec6d1660 $
 Schema support => enabled
 
 soap
@@ -588,7 +597,7 @@ user_agent => no value => no value
 sysvmsg
 
 sysvmsg support => enabled
-Revision => $Id: a57e25e6c32775fb53ad02fa294f63e934911815 $
+Revision => $Id: adf1d2d6be849c46eed3c3ee6f1cbebd1448d6e5 $
 
 tokenizer
 
@@ -598,6 +607,69 @@ wddx
 
 WDDX Support => enabled
 WDDX Session Serializer => enabled
+
+xdebug
+
+xdebug support => enabled
+Version => 2.2.3
+IDE Key => ubuntu
+
+Supported protocols => Revision
+DBGp - Common DeBuGger Protocol => $Revision: 1.145 $
+
+Directive => Local Value => Master Value
+xdebug.auto_trace => Off => Off
+xdebug.cli_color => 0 => 0
+xdebug.collect_assignments => Off => Off
+xdebug.collect_includes => On => On
+xdebug.collect_params => 0 => 0
+xdebug.collect_return => Off => Off
+xdebug.collect_vars => Off => Off
+xdebug.coverage_enable => On => On
+xdebug.default_enable => On => On
+xdebug.dump.COOKIE => no value => no value
+xdebug.dump.ENV => no value => no value
+xdebug.dump.FILES => no value => no value
+xdebug.dump.GET => no value => no value
+xdebug.dump.POST => no value => no value
+xdebug.dump.REQUEST => no value => no value
+xdebug.dump.SERVER => no value => no value
+xdebug.dump.SESSION => no value => no value
+xdebug.dump_globals => On => On
+xdebug.dump_once => On => On
+xdebug.dump_undefined => Off => Off
+xdebug.extended_info => On => On
+xdebug.file_link_format => no value => no value
+xdebug.idekey => no value => no value
+xdebug.max_nesting_level => 100 => 100
+xdebug.overload_var_dump => On => On
+xdebug.profiler_aggregate => Off => Off
+xdebug.profiler_append => Off => Off
+xdebug.profiler_enable => Off => Off
+xdebug.profiler_enable_trigger => Off => Off
+xdebug.profiler_output_dir => /tmp => /tmp
+xdebug.profiler_output_name => cachegrind.out.%p => cachegrind.out.%p
+xdebug.remote_autostart => Off => Off
+xdebug.remote_connect_back => Off => Off
+xdebug.remote_cookie_expire_time => 3600 => 3600
+xdebug.remote_enable => Off => Off
+xdebug.remote_handler => dbgp => dbgp
+xdebug.remote_host => localhost => localhost
+xdebug.remote_log => no value => no value
+xdebug.remote_mode => req => req
+xdebug.remote_port => 9000 => 9000
+xdebug.scream => Off => Off
+xdebug.show_exception_trace => Off => Off
+xdebug.show_local_vars => Off => Off
+xdebug.show_mem_delta => Off => Off
+xdebug.trace_enable_trigger => Off => Off
+xdebug.trace_format => 0 => 0
+xdebug.trace_options => 0 => 0
+xdebug.trace_output_dir => /tmp => /tmp
+xdebug.trace_output_name => trace.%c => trace.%c
+xdebug.var_display_max_children => 128 => 128
+xdebug.var_display_max_data => 512 => 512
+xdebug.var_display_max_depth => 3 => 3
 
 xml
 
@@ -628,6 +700,7 @@ opcache.enable_cli => Off => Off
 opcache.enable_file_override => Off => Off
 opcache.error_log => no value => no value
 opcache.fast_shutdown => 0 => 0
+opcache.file_update_protection => 2 => 2
 opcache.force_restart_timeout => 180 => 180
 opcache.inherited_hack => On => On
 opcache.interned_strings_buffer => 4 => 4
@@ -650,7 +723,7 @@ opcache.validate_timestamps => On => On
 zip
 
 Zip => enabled
-Extension Version => $Id: 7297523aaab210cb891a4b7673bbc301cd087033 $
+Extension Version => $Id: 05dd1ecc211075107543b0ef8cee488dd229fccf $
 Zip version => 1.11.0
 Libzip version => 0.10.1
 
