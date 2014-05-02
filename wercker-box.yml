@@ -1,5 +1,5 @@
 name: php55
-version: 0.0.14
+version: 0.0.15
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -25,7 +25,8 @@ script: |
 
   # Configure PHP
   sudo sed -i 's+;date.timezone =+date.timezone = Europe/Rome +g' /etc/php5/cli/php.ini
-  sudo sed -i  's/128M/8096M/' /etc/php5/cli/php.ini
+  sudo sed -i 's/128M/8096M/' /etc/php5/cli/php.ini
+  sudo sed -i 's/disable_functions/;disable_functions/' /etc/php5/cli/php.ini
 
   # Configure PEAR
   pear config-set php_ini /etc/php5/cli/php.ini
@@ -68,5 +69,5 @@ script: |
   sudo wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list
   sudo apt-get update && sudo apt-get install s3cmd
 
-  # Install coverage-badge
-  sudo npm install -g coverage-badge
+  # PHP info
+  php -i || PHP info exited with error(s)
