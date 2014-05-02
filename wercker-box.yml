@@ -70,4 +70,4 @@ script: |
   sudo apt-get update && sudo apt-get install s3cmd
 
   # PHP info
-  php -i || PHP info exited with error(s)
+  php -i || echo "PHP info exited with error(s)"
